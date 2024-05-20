@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Scanner</title>
+</head>
+<body>
+    <h1>Document Scanner with Live Camera Feed</h1>
+    <h2>Scanned Document:</h2>
+    <canvas id="result"></canvas> <!-- Canvas to display the highlighted document -->
+
+    <h2>Live Camera Feed:</h2>
+    <video id="video" autoplay playsinline></video> <!-- Video element for live camera feed -->
+    
+    <!-- Load jscanify library -->
+    <script src="https://cdn.jsdelivr.net/gh/ColonelParrot/jscanify@master/src/jscanify.min.js"></script>
+    <script src="https://docs.opencv.org/4.7.0/opencv.js" async></script>
+    
+    <!-- Load script for document scanning and highlighting -->
+    <script src="script.js"></script>
+</body>
+</html>
