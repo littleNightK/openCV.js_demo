@@ -1,4 +1,4 @@
-document.getElementById('showVideo').addEventListener('click', function() {
+document.querySelector('.start-camera').addEventListener('click', function() {
     document.getElementById('videoContainer').style.display = 'block';
   
     const scanner = new jscanify();
@@ -8,7 +8,6 @@ document.getElementById('showVideo').addEventListener('click', function() {
     const captureButton = document.getElementById('capture'); 
     const previewImage = document.getElementById('preview'); 
 
-  
     function handleSuccess(stream) {
       video.srcObject = stream;
       video.setAttribute("playsinline", ""); // required on iOS
@@ -29,7 +28,6 @@ document.getElementById('showVideo').addEventListener('click', function() {
       });
   
     video.onloadedmetadata = () => {
-      // Set canvas dimensions to match video, but scale down if necessary
       const maxDimension = Math.min(video.videoWidth, video.videoHeight, 1024); // iOS limit
       const aspectRatio = video.videoWidth / video.videoHeight;
       if (video.videoWidth > video.videoHeight) {
@@ -43,16 +41,6 @@ document.getElementById('showVideo').addEventListener('click', function() {
       result.height = canvas.height;
     };
 
-    captureButton.addEventListener('click', function() {
-        // Draw the current frame of the video onto the canvas
-        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-    
-        // Pass the canvas to the extractPaper method
-        const resultCanvas = scanner.extractPaper(canvas, canvas.width, canvas.height);
-        const dataUrl = resultCanvas.toDataURL();
-        previewImage.src = dataUrl;
-    });
-  
     video.onplay = () => {
       const canvasCtx = canvas.getContext("2d");
       const resultCtx = result.getContext("2d");
@@ -63,4 +51,10 @@ document.getElementById('showVideo').addEventListener('click', function() {
         resultCtx.drawImage(resultCanvas, 0, 0, result.width, result.height);
       }, 100);
     };
-  });
+
+    // Capture functionality
+    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+    const resultCanvas = scanner.extractPaper(canvas, canvas.width, canvas.height);
+    const dataUrl = resultCanvas.toDataURL();
+    previewImage.src = dataUrl;
+});

@@ -11,32 +11,26 @@
         #videoContainer {
             display: none;
         }
-        #video{
+        #video {
             display: none;
         }
-        #canvas{
+        #canvas {
             display: none;
         }
     </style>
 </head>
 
 <body>
-    <button id="showVideo">Show Video</button>
-    <div id="videoContainer">
-        <video id="video"></video>
-        <canvas id="canvas"></canvas>
-        <!-- original video -->
-        <canvas id="result"></canvas>
-        <!-- highlighted video -->
-        <button id="capture">Capture</button>
-        <img id="preview" />
+    <div class="camera-block">
+        <img class="start-camera" src="./camera-svgrepo-com.svg" alt="Start Camera" style="cursor: pointer; width: 20%;" />
+        <div id="videoContainer">
+            <video id="video"></video>
+            <canvas id="canvas"></canvas>
+            <canvas id="result"></canvas>
+            <img id="preview" />
+        </div>
     </div>
     <script src="script.js"></script>
-    <script>
-        document.getElementById('showVideo').addEventListener('click', function() {
-            document.getElementById('videoContainer').style.display = 'block';
-        });
-    </script>
 </body>
 
 </html>
