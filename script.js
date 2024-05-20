@@ -25,7 +25,7 @@ document.getElementById('showVideo').addEventListener('click', function() {
         console.error("Error accessing webcam: ", err);
       });
   
-    video.onplay = () => {
+    video.onloadedmetadata = () => {
       // Set canvas dimensions to match video, but scale down if necessary
       const maxDimension = Math.min(video.videoWidth, video.videoHeight, 1024); // iOS limit
       const aspectRatio = video.videoWidth / video.videoHeight;
@@ -38,7 +38,9 @@ document.getElementById('showVideo').addEventListener('click', function() {
       }
       result.width = canvas.width;
       result.height = canvas.height;
+    };
   
+    video.onplay = () => {
       const canvasCtx = canvas.getContext("2d");
       const resultCtx = result.getContext("2d");
   
