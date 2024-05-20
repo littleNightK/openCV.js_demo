@@ -6,16 +6,29 @@
     <script src="https://docs.opencv.org/4.7.0/opencv.js" async></script>
     <!-- warning: loading OpenCV can take some time. Load asynchronously -->
     <script src="https://cdn.jsdelivr.net/gh/ColonelParrot/jscanify@master/src/jscanify.min.js"></script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #videoContainer {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
-    <video id="video" muted></video>
-    <canvas id="canvas"></canvas>
-    <!-- original video -->
-    <canvas id="result"></canvas>
-    <!-- highlighted video -->
+    <button id="showVideo">Show Video</button>
+    <div id="videoContainer">
+        <video id="video" muted></video>
+        <canvas id="canvas"></canvas>
+        <!-- original video -->
+        <canvas id="result"></canvas>
+        <!-- highlighted video -->
+    </div>
     <script src="script.js"></script>
+    <script>
+        document.getElementById('showVideo').addEventListener('click', function() {
+            document.getElementById('videoContainer').style.display = 'block';
+        });
+    </script>
 </body>
 
 </html>
