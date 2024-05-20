@@ -7,7 +7,9 @@ navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
   video.srcObject = stream;
   video.onloadedmetadata = () => {
     video.play();
-
+  };
+  
+  video.onplay = () => {
     // Set canvas dimensions to match video
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
