@@ -5,6 +5,9 @@ document.getElementById('showVideo').addEventListener('click', function() {
     const canvas = document.getElementById("canvas");
     const result = document.getElementById("result");
     const video = document.getElementById("video");
+    const captureButton = document.getElementById('capture'); 
+    const previewImage = document.getElementById('preview'); 
+
   
     function handleSuccess(stream) {
       video.srcObject = stream;
@@ -39,6 +42,16 @@ document.getElementById('showVideo').addEventListener('click', function() {
       result.width = canvas.width;
       result.height = canvas.height;
     };
+
+    captureButton.addEventListener('click', function() {
+        // Draw the current frame of the video onto the canvas
+        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+    
+        // Pass the canvas to the extractPaper method
+        const resultCanvas = scanner.extractPaper(canvas, canvas.width, canvas.height);
+        const dataUrl = resultCanvas.toDataURL();
+        previewImage.src = dataUrl;
+    });
   
     video.onplay = () => {
       const canvasCtx = canvas.getContext("2d");
