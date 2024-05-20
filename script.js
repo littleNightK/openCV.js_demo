@@ -48,6 +48,6 @@ document.getElementById('showVideo').addEventListener('click', function() {
         canvasCtx.drawImage(video, 0, 0, canvas.width, canvas.height);
         const resultCanvas = scanner.highlightPaper(canvas);
         resultCtx.drawImage(resultCanvas, 0, 0, result.width, result.height);
-      }, 10);
+      }, 100);
     };
   });
