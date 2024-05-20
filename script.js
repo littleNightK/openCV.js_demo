@@ -5,14 +5,12 @@ const video = document.getElementById('video');
 
 navigator.mediaDevices.getUserMedia({ 
   video: { 
-    facingMode: { exact: "environment" } 
+    facingMode: { ideal: "environment" } 
   } 
 }).then((stream) => {
-  video.srcObject = stream;
-  video.muted = true; // Ensure the video is muted
-  video.onloadedmetadata = () => {
+    video.srcObject = stream;
+    video.muted = true; // Ensure the video is muted
     video.play();
-  };
   
   video.onplay = () => {
     // Set canvas dimensions to match video, but scale down if necessary
