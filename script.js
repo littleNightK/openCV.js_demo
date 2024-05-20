@@ -25,14 +25,11 @@ function highlightDocument() {
 }
 
 // Start capturing video frames and highlighting documents
-navigator.mediaDevices.getUserMedia({ video: true })
+navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
     .then((stream) => {
         video.srcObject = stream;
         video.onloadedmetadata = () => {
             video.play();
             highlightDocument(); // Start highlighting documents
         };
-    })
-    .catch((err) => {
-        console.error("Error accessing webcam: ", err);
     });
