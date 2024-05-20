@@ -25,11 +25,34 @@ function highlightDocument() {
 }
 
 // Start capturing video frames and highlighting documents
-navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+navigator.mediaDevices.getUserMedia({ 
+    video: { 
+        facingMode: { exact: 'environment' } 
+    } 
+})
+.then((stream) => {
+    video.srcObject = stream;
+    video.onloadedmetadata = () => {
+        video.play();
+        highlightDocument(); // Start highlighting documents
+    };
+})
+.catch(error => {
+    console.log("Error: ", error);
+    // If the environment camera is not available, try the user camera
+    navigator.mediaDevices.getUserMedia({ 
+        video: { 
+            facingMode: 'user' 
+        } 
+    })
     .then((stream) => {
         video.srcObject = stream;
         video.onloadedmetadata = () => {
             video.play();
             highlightDocument(); // Start highlighting documents
         };
+    })
+    .catch(error => {
+        console.log("Error: ", error);
     });
+});
